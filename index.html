@@ -1,38 +1,43 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>repositorio</title>
-</head>
-<body>
-    <h1>nfrijevn</h1>
-    <p>ghvhvjvhvujvjvjvjhv</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <title>Ciclo en JavaScript</title>
     <script>
-        function sumar_uno(a){
-            console.log(a+1);
+        let minutes = 0;
+        let seconds = 0;
+        let milliseconds = 0;
+        let interval;       
+        function startTimer() {
+        interval = setInterval(()=>{
+            milliseconds += 10;
+            if (milliseconds == 1000) {
+            milliseconds = 0;
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes == 60) {
+                stopTimer();
+                }
+            }
+            }
+            document.getElementById("minutes").textContent = padZero(minutes);
+            document.getElementById("seconds").textContent = padZero(seconds);
+            document.getElementById("milliseconds").textContent = padZero(milliseconds);
+        }, 10);
+        }
+        function stopTimer() {
+            clearInterval(interval);
+        }
+        function padZero(value) {
+        return value < 10 ? "0" + value : value;
         }
     </script>
-    <button onclick="sumar_uno(5);"></button>
+</head>
+<body>
+    <div id="minutes">00</div>:<div id="seconds">00</div>:<div id="milliseconds">00</div>
+    <button id="startButton" onclick="startTimer()">Iniciar</button>
+    <button id="stopButton" onclick="stopTimer()">Detener</button>
+    <button id="resetButton">reiniciar</button>
 </body>
 </html>
