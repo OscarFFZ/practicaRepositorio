@@ -3,41 +3,35 @@
 <head>
   <title>Ciclo en JavaScript</title>
     <script>
-        let minutes = 0;
+        function getNumber(){
+            let minutes = document.getElementById("minutes").value;
+            console.log(minutes);
+        }
         let seconds = 0;
         let milliseconds = 0;
-        let interval;       
-        function startTimer() {
-        interval = setInterval(()=>{
-            milliseconds += 10;
-            if (milliseconds == 1000) {
-            milliseconds = 0;
-            seconds++;
-            if (seconds == 60) {
-                seconds = 0;
-                minutes++;
-                if (minutes == 60) {
-                stopTimer();
-                }
-            }
-            }
-            document.getElementById("minutes").textContent = padZero(minutes);
-            document.getElementById("seconds").textContent = padZero(seconds);
-            document.getElementById("milliseconds").textContent = padZero(milliseconds);
-        }, 10);
+        function startTimer(){
+            x=getNumber();
+           while(x>=0){
+                
+                console.log(x);
+                x--;
+           }
+
         }
-        function stopTimer() {
-            clearInterval(interval);
-        }
-        function padZero(value) {
-        return value < 10 ? "0" + value : value;
-        }
+
+       
+       
+
     </script>
 </head>
 <body>
+    <label for="minutes">Ingrese los minutos donde quiere comenzar la cuenta: </label>
+    <input type="number" id="minutes">
+    <button onclick="getNumber()">Enviar</button>
     <div id="minutes">00</div>:<div id="seconds">00</div>:<div id="milliseconds">00</div>
+
     <button id="startButton" onclick="startTimer()">Iniciar</button>
     <button id="stopButton" onclick="stopTimer()">Detener</button>
-    <button id="resetButton">reiniciar</button>
+    <button id="resetButton" onclick="resetTimer()">reiniciar</button>
 </body>
 </html>
