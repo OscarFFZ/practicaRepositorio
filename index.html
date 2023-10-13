@@ -1,37 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ciclo en JavaScript</title>
-    <script>
-        function getNumber(){
-            let minutes = document.getElementById("minutes").value;
-            console.log(minutes);
-        }
-        let seconds = 0;
-        let milliseconds = 0;
-        function startTimer(){
-            x=getNumber();
-           while(x>=0){
-                
-                console.log(x);
-                x--;
-           }
-
-        }
-
-       
-       
-
-    </script>
+  <title>Entradas</title>
+    
 </head>
 <body>
-    <label for="minutes">Ingrese los minutos donde quiere comenzar la cuenta: </label>
-    <input type="number" id="minutes">
-    <button onclick="getNumber()">Enviar</button>
-    <div id="minutes">00</div>:<div id="seconds">00</div>:<div id="milliseconds">00</div>
-
-    <button id="startButton" onclick="startTimer()">Iniciar</button>
-    <button id="stopButton" onclick="stopTimer()">Detener</button>
-    <button id="resetButton" onclick="resetTimer()">reiniciar</button>
+    <input type="text" id="entrada"> 
+    <button onclick="agregar()">Agregar</button>
+    <button>Borrar</button>
+    <h1>Entradas: </h1>
+    <ul id="mi_lista"></ul>
+    <script src="./JS/index.js"></script>
 </body>
 </html>
