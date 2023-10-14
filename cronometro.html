@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronómetro</title>
+    <link rel="stylesheet" type="text/css" href="./index.css" media="screen">
+
+</head>
+<body>
+    <h1>Cronómetro</h1>
+    <div class="cronometro">
+        <div id="hms"></div>
+        <div class="boton start"><button>Iniciar/Continuar</button></div>        
+        <div class="boton stop"><button>Detener</button></div>
+        <div class="boton reiniciar"><button>Reiniciar</button></div>
+        <br> <br> <br>
+
+        <a href="./index.html">Entrar</a>
+    </div>
+    
+    <script>
+window.onload = init; /* para que nada más entrar al documento se inice la función init */
+function init(){
+    document.querySelector(".start").addEventListener("click",cronometrar);
+    document.querySelector(".stop").addEventListener("click",parar);
+    document.querySelector(".reiniciar").addEventListener("click",reiniciar);   /* se agrega un evento que reacciona al dar click*/
+    horas = 0;
+    minutos = 0;
+    segundos = 0;
+    document.getElementById("hms").innerHTML="00:00:00";
+}         
+function cronometrar(){
+    escribir();                         /*Se llama a la función escribir que lo que va a hacer es añadir un segundo, luego se asigna el intervalo creado a una variable de nombre id que sirve para las funciones parar y reiniciar*/
+    id = setInterval(escribir,1000);        
+    document.querySelector(".start").removeEventListener("click",cronometrar);
+}
+function escribir(){
+    var horasAux, minutosAux, segundosAux;
+    segundos++;
+    if (segundos>59){minutos++;segundos=0;}     
+    if (minutos>59){horas++;minutos=0;}
+    if (horas>24){horas=0;}
+
+    if (segundos<10){segundosAux="0"+segundos;}else{segundosAux=segundos;}
+    if (minutos<10){minutosAux="0"+minutos;}else{minutosAux=minutos;}
+    if (horas<10){horasAux="0"+horas;}else{horasAux=horas;}
+
+    document.getElementById("hms").innerHTML = horasAux + ":" + minutosAux + ":" + segundosAux; 
+}
+function parar(){
+    clearInterval(id);      /*Ya iniciada la función cronometrar se elimina la propiedad del botón de que al clicar se cree un nuevo evento.*/
+    document.querySelector(".start").addEventListener("click",cronometrar);
+/*Se elimina el intervalo, el botón de iniciar requiere volver a funcionar y entonces 
+se asigna de nuevo un evento mediante addEventListener().*/
+}
+function reiniciar(){
+    clearInterval(id);
+    document.getElementById("hms").innerHTML="00:00:00";
+    horas=0;minutos=0;segundos=0;
+    document.querySelector(".start").addEventListener("click",cronometrar);
+}
+/*aqui aplica lo mismo solo que tambien se asigna las variables a cero ya que se reinica*/
+    </script>
+    
+</body>
+</html>
